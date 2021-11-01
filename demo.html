@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<title></title>
+		<link rel="stylesheet" href="artificial-chart.css">
+		<style>
+		body {
+			font-family: system-ui, sans-serif;
+		}
+		</style>
+		<script src="https://d3js.org/d3.v7.min.js" defer></script>
+		<script src="artificial-chart.js" defer></script>
+		<script src="demo.js" defer></script>
+	</head>
+	<body>
+		<h1>Artificial Chart</h1>
+
+		<h2>Horizontal Bar Chart</h2>
+		<div id="demographics-jobtitle-chart" class="artfc-placeholder"></div>
+
+		<details>
+			<summary>Show Chart Data</summary>
+			<table id="demographics-jobtitle-table">
+				<thead>
+					<tr>
+						<th>Job Title</th>
+						<th>Percentage of Survey Participants</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Developer: Front-end</td>
+						<td>45%</td>
+					</tr>
+					<tr>
+						<td>Developer: Full Stack</td>
+						<td>32%</td>
+					</tr>
+					<tr>
+						<td>Management</td>
+						<td>6%</td>
+					</tr>
+					<tr>
+						<td>Other</td>
+						<td>5%</td>
+					</tr>
+					<tr>
+						<td>Developer: Back-end</td>
+						<td>5%</td>
+					</tr>
+					<tr>
+						<td>Designer</td>
+						<td>4%</td>
+					</tr>
+					<tr>
+						<td>Content Producer</td>
+						<td>2%</td>
+					</tr>
+					<tr>
+						<td>DevOps</td>
+						<td>2%</td>
+					</tr>
+				</tbody>
+			</table>
+		</details>
+
+		<h2>Vertical Bar Chart</h2>
+		<div id="experience-wentremote-chart" class="d3chart-placeholder"></div>
+
+		<details>
+			<summary>Show Chart Data</summary>
+			<table id="experience-wentremote-table">
+				<thead>
+					<tr>
+						<th>Years of Experience</th>
+						<th>Remote</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td>&lt; 1</td><td>17%</td></tr>
+					<tr><td>1–2</td><td>32%</td></tr>
+					<tr><td>3–4</td><td>40%</td></tr>
+					<tr><td>5–6</td><td>40%</td></tr>
+					<tr><td>7–8</td><td>40%</td></tr>
+					<tr><td>9–10</td><td>41%</td></tr>
+					<tr><td>11–12</td><td>42%</td></tr>
+					<tr><td>13–14</td><td>41%</td></tr>
+					<tr><td>15+</td><td>39%</td></tr>
+				</tbody>
+			</table>
+		</details>
+
+		<h2>Grouped Vertical bar chart</h2>
+		<div id="demographics-jobs-chart" class="artfc-placeholder"></div>
+		<details>
+			<summary>Show Chart Data</summary>
+			<table id="demographics-jobs-table">
+				<thead>
+					<tr>
+						<th>People</th>
+						<th>2020</th>
+						<th>2021</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Developers</td>
+						<td>79%</td>
+						<td>81%</td>
+					</tr>
+					<tr>
+						<td>Non-developers</td>
+						<td>21%</td>
+						<td>19%</td>
+					</tr>
+				</tbody>
+			</table>
+		</details>
+
+		<h2>Grouped Horizontal Bar Chart</h2>
+		<div>
+			<div class="artfc-legend-placeholder"></div>
+			<div id="demographics-employmentstatus-chart" class="artfc-placeholder artfc-placeholder-large"></div>
+		</div>
+
+		<details>
+			<summary>Show Chart Data</summary>
+			<table id="demographics-employmentstatus-table">
+				<thead>
+					<tr>
+						<th>Employment Status</th>
+						<th>2020</th>
+						<th>2021</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Full-time</td>
+						<td>69%</td>
+						<td>60%</td>
+					</tr>
+					<tr>
+						<td>Student</td>
+						<td>9%</td>
+						<td>16%</td>
+					</tr>
+					<tr>
+						<td>Contractor</td>
+						<td>11%</td>
+						<td>10%</td>
+					</tr>
+					<tr>
+						<td>Part-time</td>
+						<td>4%</td>
+						<td>5%</td>
+					</tr>
+					<tr>
+						<td>Unemployed</td>
+						<td>4%</td>
+						<td>5%</td>
+					</tr>
+					<tr>
+						<td>Between jobs</td>
+						<td>4%</td>
+						<td>3%</td>
+					</tr>
+					<tr>
+						<td>Retired</td>
+						<td>0%</td>
+						<td>1%</td>
+					</tr>
+				</tbody>
+			</table>
+		</details>
+
+		<svg style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
+			<defs>
+				<filter x="0" y="0" width="1" height="1" id="offset-label-bg">
+					<feFlood flood-color="#161a2c" result="bg" />
+					<feMerge>
+						<feMergeNode in="bg"/>
+						<feMergeNode in="SourceGraphic"/>
+					</feMerge>
+				</filter>
+				<linearGradient id="gradient-sunrise-h">
+					<stop offset="0%" stop-color="#F0047F"/>
+					<stop offset="100%" stop-color="#FC814A"/>
+				</linearGradient>
+				<linearGradient id="gradient-sunrise-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#F0047F"/>
+					<stop offset="100%" stop-color="#FC814A"/>
+				</linearGradient>
+				<linearGradient id="gradient-blue-h">
+					<stop offset="0%" stop-color="#0090c9"/>
+					<stop offset="100%" stop-color="#00c0ad"/>
+				</linearGradient>
+				<linearGradient id="gradient-blue-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#0090c9"/>
+					<stop offset="100%" stop-color="#00c0ad"/>
+				</linearGradient>
+				<linearGradient id="gradient-sun-h">
+					<stop offset="0%" stop-color="#FFC803"/>
+					<stop offset="100%" stop-color="#FC814A"/>
+				</linearGradient>
+				<linearGradient id="gradient-sun-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#FFC803"/>
+					<stop offset="100%" stop-color="#FC814A"/>
+				</linearGradient>
+				<linearGradient id="gradient-seamist-h">
+					<stop offset="0%" stop-color="#78ECC2"/>
+					<stop offset="100%" stop-color="#00FFB2"/>
+				</linearGradient>
+				<linearGradient id="gradient-seamist-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#78ECC2"/>
+					<stop offset="100%" stop-color="#00FFB2"/>
+				</linearGradient>
+				<linearGradient id="gradient-hallows-h">
+					<stop offset="0%" stop-color="#DF4A1F"/>
+					<stop offset="100%" stop-color="#FFA278"/>
+				</linearGradient>
+				<linearGradient id="gradient-hallows-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#DF4A1F"/>
+					<stop offset="100%" stop-color="#FFA278"/>
+				</linearGradient>
+				<linearGradient id="gradient-bubblegum-h">
+					<stop offset="0%" stop-color="#FF98BC"/>
+					<stop offset="100%" stop-color="#FFCCDE"/>
+				</linearGradient>
+				<linearGradient id="gradient-bubblegum-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#FF98BC"/>
+					<stop offset="100%" stop-color="#FFCCDE"/>
+				</linearGradient>
+				<linearGradient id="gradient-purple-h">
+					<stop offset="0%" stop-color="#6B38FB"/>
+					<stop offset="100%" stop-color="#CCB4FF"/>
+				</linearGradient>
+				<linearGradient id="gradient-purple-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#6B38FB"/>
+					<stop offset="100%" stop-color="#CCB4FF"/>
+				</linearGradient>
+				<linearGradient id="gradient-air-h">
+					<stop offset="0%" stop-color="#03d0d0"/>
+					<stop offset="100%" stop-color="#B5FFF8"/>
+				</linearGradient>
+				<linearGradient id="gradient-air-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#03d0d0"/>
+					<stop offset="100%" stop-color="#B5FFF8"/>
+				</linearGradient>
+				<linearGradient id="gradient-pink-h">
+					<stop offset="0%" stop-color="#c40468"/>
+					<stop offset="100%" stop-color="#fc2796"/>
+				</linearGradient>
+				<linearGradient id="gradient-pink-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#c40468"/>
+					<stop offset="100%" stop-color="#fc2796"/>
+				</linearGradient>
+				<linearGradient id="gradient-leaves-h">
+					<stop offset="0%" stop-color="#78f19a"/>
+					<stop offset="100%" stop-color="#13b110"/>
+				</linearGradient>
+				<linearGradient id="gradient-leaves-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#78f19a"/>
+					<stop offset="100%" stop-color="#13b110"/>
+				</linearGradient>
+				<linearGradient id="gradient-haze-h">
+					<stop offset="0%" stop-color="#91A5EE"/>
+					<stop offset="100%" stop-color="#d6deff"/>
+				</linearGradient>
+				<linearGradient id="gradient-haze-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#91A5EE"/>
+					<stop offset="100%" stop-color="#d6deff"/>
+				</linearGradient>
+				<linearGradient id="gradient-gnat-h">
+					<stop offset="0%" stop-color="#02C6B3"/>
+					<stop offset="100%" stop-color="#59F7E7"/>
+				</linearGradient>
+				<linearGradient id="gradient-gnat-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#02C6B3"/>
+					<stop offset="100%" stop-color="#59F7E7"/>
+				</linearGradient>
+				<linearGradient id="gradient-fire-h">
+					<stop offset="0%" stop-color="#FF0F00"/>
+					<stop offset="100%" stop-color="#FF928A"/>
+				</linearGradient>
+				<linearGradient id="gradient-fire-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#FF0F00"/>
+					<stop offset="100%" stop-color="#FF928A"/>
+				</linearGradient>
+				<linearGradient id="gradient-ocean-h">
+					<stop offset="0%" stop-color="#003EDD"/>
+					<stop offset="100%" stop-color="#6CDCFF"/>
+				</linearGradient>
+				<linearGradient id="gradient-ocean-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#003EDD"/>
+					<stop offset="100%" stop-color="#6CDCFF"/>
+				</linearGradient>
+				<linearGradient id="gradient-night-h">
+					<stop offset="0%" stop-color="#02465F"/>
+					<stop offset="100%" stop-color="#6AD7FF"/>
+				</linearGradient>
+				<linearGradient id="gradient-night-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#02465F"/>
+					<stop offset="100%" stop-color="#6AD7FF"/>
+				</linearGradient>
+				<linearGradient id="gradient-dusk-h">
+					<stop offset="0%" stop-color="#960000"/>
+					<stop offset="100%" stop-color="#E94242"/>
+				</linearGradient>
+				<linearGradient id="gradient-dusk-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#960000"/>
+					<stop offset="100%" stop-color="#E94242"/>
+				</linearGradient>
+				<linearGradient id="gradient-rain-h">
+					<stop offset="0%" stop-color="#FF72CF"/>
+					<stop offset="100%" stop-color="#C92ECC"/>
+				</linearGradient>
+				<linearGradient id="gradient-rain-v" x1="0" x2="0" y1="0" y2="1">
+					<stop offset="0%" stop-color="#FF72CF"/>
+					<stop offset="100%" stop-color="#C92ECC"/>
+				</linearGradient>
+			</defs>
+		</svg>
+	</body>
+</html>

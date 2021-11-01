@@ -1,0 +1,332 @@
+.artfc-placeholder {
+	width: 100%;
+	height: 450px;
+}
+.artfc-placeholder-large {
+	height: 660px;
+}
+.artfc-placeholder-xl {
+	height: 1000px;
+}
+.artfc-legend-placeholder {
+	min-height: 1.71875em; /* 27.5px /16 */
+}
+
+.artfc {
+	position: relative;
+}
+.artfc > .artfc-legend {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.artfc-legend {
+	display: flex;
+	justify-content: flex-end;
+	gap: .5em;
+	font-size: 0.8125em; /* 13px /16 */
+	font-weight: 600;
+}
+.artfc-legend button {
+	font-weight: inherit;
+}
+.artfc-legend-wrap .artfc-legend {
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+.artfc + .artfc-legend-placeholder .artfc-legend {
+	justify-content: center;
+}
+.artfc-legend > * {
+	border-radius: .25em;
+	padding: .25em .5em;
+}
+
+.artfc .tick text {
+	font-size: 1.3em; /* 13px /10 */
+}
+.artfc .tick line {
+	shape-rendering: crispEdges;
+	stroke: rgba(255,255,255,.15);
+}
+.artfc-bubble .tick:nth-child(2n) line {
+	stroke: rgba(255,255,255,.22);
+}
+.artfc-bubble .tick:nth-child(2n+1) line {
+	stroke: rgba(255,255,255,.1);
+}
+.artfc-bubble .artfc-xaxis :first-child line,
+.artfc-bubble .artfc-yaxis .tick:last-child line {
+	stroke: #737680;
+	stroke-width: 2px;
+}
+.artfc-hbar .artfc-xaxis .tick:first-child line,
+.artfc-vbar .artfc-yaxis .tick:first-child line {
+	stroke: #c5c5c9;
+	stroke-width: 2px;
+}
+.artfc-hbar .artfc-xaxis .tick:first-child line {
+	transform: translateX(-1px);
+}
+.artfc-vbar .artfc-yaxis .tick:first-child line {
+	transform: translateY(1px);
+}
+.artfc-vbar .artfc-xaxis text,
+.artfc-hbar .artfc-yaxis text {
+	--artfc-label-clamp: 2vw;
+	font-size: 12px;
+	font-size: clamp(12px, var(--artfc-label-clamp), 14px);
+	font-weight: 600;
+}
+
+
+.artfc-inlinebarvalue {
+	--artfc-label-clamp: 2vw;
+	font-size: 12px;
+	font-size: clamp(11px, var(--artfc-label-clamp), 16px);
+	font-weight: 600;
+	text-anchor: middle;
+}
+.artfc-inlinebarvalue-h {
+	font-size: 16px;
+	font-weight: 600;
+	text-anchor: start;
+	dominant-baseline: central;
+	alignment-baseline: middle;
+}
+.artfc-inlinebarvalue-h.inside {
+	text-anchor: end;
+}
+.artfc-inlinebarvalue-h.inside-offset {
+	font-size: 14px;
+	text-anchor: end;
+}
+
+/* Wrapped labels */
+.artfc-yaxis text.artfc-label-wrapped {
+	font-size: 13px;
+}
+
+/* Axis labels */
+.artfc-axislabel {
+	fill: #fff;
+	text-anchor: end;
+	font-weight: 700;
+}
+.artfc-axislabel-center {
+	text-anchor: middle;
+}
+
+/* Bubble charts */
+.artfc-bubblelabel {
+	text-anchor: middle;
+	dominant-baseline: central;
+	font-size: 12px;
+	font-weight: 600;
+}
+.artfc-bubblelabel.offset-l,
+.artfc-bubblelabel.offset-r {
+	font-weight: 700;
+	text-shadow: none;
+}
+.artfc-bubblelabel.offset-l {
+	text-anchor: end;
+}
+.artfc-bubblelabel.offset-r {
+	text-anchor: start;
+}
+.artfc-bubblelabelbg.offset {
+	background-color: rgba(255,255,255,.4);
+}
+.artfc-bubble circle {
+	fill-opacity: .85;
+}
+.artfc-bubble-active .artfc-bubblelabel,
+.artfc-bubble-active .artfc-bubblecircle {
+	fill-opacity: .15;
+}
+.artfc-bubble-active .artfc-bubblelabel.active,
+.artfc-bubble-active .artfc-bubblecircle.active {
+	fill-opacity: 1;
+}
+.artfc-bubble .artfc-yaxis .tick:last-child text {
+	display: none;
+}
+.artfc-bubble .artfc-xaxis .tick text {
+	transform: translateY(2px);
+}
+
+/* Color gradients */
+.artfc-color-0 {
+	fill: url(#gradient-sunrise-v);
+}
+.artfc-hbar .artfc-color-0 {
+	fill: url(#gradient-sunrise-h);
+}
+.artfc-color-1 {
+	fill: url(#gradient-blue-v);
+}
+.artfc-hbar .artfc-color-1 {
+	fill: url(#gradient-blue-h);
+}
+.artfc-color-2 {
+	fill: url(#gradient-sun-v);
+}
+.artfc-hbar .artfc-color-2 {
+	fill: url(#gradient-sun-h);
+}
+.artfc-color-3 {
+	fill: url(#gradient-seamist-v);
+}
+.artfc-hbar .artfc-color-3 {
+	fill: url(#gradient-seamist-h);
+}
+.artfc-color-4 {
+	fill: url(#gradient-hallows-v);
+}
+.artfc-hbar .artfc-color-4 {
+	fill: url(#gradient-hallows-h);
+}
+.artfc-color-5 {
+	fill: url(#gradient-bubblegum-v);
+}
+.artfc-hbar .artfc-color-5 {
+	fill: url(#gradient-bubblegum-h);
+}
+.artfc-color-6 {
+	fill: url(#gradient-purple-v);
+}
+.artfc-hbar .artfc-color-6 {
+	fill: url(#gradient-purple-h);
+}
+.artfc-color-7 {
+	fill: url(#gradient-air-v);
+}
+.artfc-hbar .artfc-color-7 {
+	fill: url(#gradient-air-h);
+}
+.artfc-color-8 {
+	fill: url(#gradient-pink-v);
+}
+.artfc-hbar .artfc-color-8 {
+	fill: url(#gradient-pink-h);
+}
+.artfc-color-9 {
+	fill: url(#gradient-leaves-v);
+}
+.artfc-hbar .artfc-color-9 {
+	fill: url(#gradient-leaves-h);
+}
+.artfc-color-10 {
+	fill: url(#gradient-haze-v);
+}
+.artfc-hbar .artfc-color-10 {
+	fill: url(#gradient-haze-h);
+}
+.artfc-color-11 {
+	fill: url(#gradient-gnat-v);
+}
+.artfc-hbar .artfc-color-11 {
+	fill: url(#gradient-gnat-h);
+}
+.artfc-color-12 {
+	fill: url(#gradient-fire-v);
+}
+.artfc-hbar .artfc-color-12 {
+	fill: url(#gradient-fire-h);
+}
+.artfc-color-13 {
+	fill: url(#gradient-ocean-v);
+}
+.artfc-hbar .artfc-color-13 {
+	fill: url(#gradient-ocean-h);
+}
+.artfc-color-14 {
+	fill: url(#gradient-night-v);
+}
+.artfc-hbar .artfc-color-14 {
+	fill: url(#gradient-night-h);
+}
+.artfc-color-15 {
+	fill: url(#gradient-dusk-v);
+}
+.artfc-hbar .artfc-color-15 {
+	fill: url(#gradient-dusk-h);
+}
+
+/* Legend gradients */
+.artfc-legend-0 {
+	color: #fff;
+	background: linear-gradient(352.65deg, #F0047F 1.39%, #FC814A 82.63%);
+}
+.artfc-legend-1 {
+	color: #000;
+	background: linear-gradient(47.9deg, #0090CA 6.17%, #00BFAD 79.63%);
+}
+.artfc-legend-2 {
+	color: #000;
+	background: linear-gradient(180deg, #FFC803 0%, #FC814A 100%);
+}
+.artfc-legend-3 {
+	color: #000;
+	background: linear-gradient(180deg, #78ECC2 0%, #00FFB2 100%);
+}
+.artfc-legend-4 {
+	color: #000;
+	background: linear-gradient(108.82deg, #DF4A1F 0%, #FFA278 90.74%);
+}
+.artfc-legend-5 {
+	color: #000;
+	background: linear-gradient(108.82deg, #FD98BC 32.87%, #FFCCDE 90.74%);
+}
+.artfc-legend-6 {
+	color: #000;
+	background: linear-gradient(108.82deg, #6B38FB 0%, #CCB4FF 90.74%);
+}
+.artfc-legend-7 {
+	color: #000;
+	background: linear-gradient(108.82deg, #03D0D0 0%, #B5FFF8 90.74%);
+}
+.artfc-legend-8 {
+	color: #fff;
+	background: linear-gradient(108.82deg, #C40468 0%, #FC2796 90.74%);
+}
+.artfc-legend-9 {
+	color: #000;
+	background: linear-gradient(180deg, #78F19A 0%, #13B110 100%);
+}
+.artfc-legend-10 {
+	color: #000;
+	background: linear-gradient(108.82deg, #91A5EE 37.71%, #D6DEFF 90.74%);
+}
+.artfc-legend-11 {
+	color: #000;
+	background: linear-gradient(108.82deg, #02C6B3 40.13%, #59F7E7 90.74%);
+}
+.artfc-legend-12 {
+	color: #fff;
+	background: linear-gradient(108.82deg, #FF0F00 0%, #FF928A 90.74%);
+}
+.artfc-legend-13 {
+	color: #000;
+	background: linear-gradient(180deg, #003EDD 0%, #6CDCFF 100%);
+}
+.artfc-legend-14 {
+	color: #000;
+	background: linear-gradient(108.82deg, #02465F 3.38%, #6AD7FF 90.74%);
+}
+.artfc-legend-15 {
+	color: #fff;
+	background: linear-gradient(108.82deg, #960000 0%, #E94242 92.82%);
+}
+.artfc-legend-16 {
+	color: #fff;
+	background: linear-gradient(108.82deg, #FF72CF 0%, #C92ECC 90.74%);
+}
+
+
+
+/* Overrides */
