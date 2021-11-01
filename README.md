@@ -1,6 +1,10 @@
 # artificial-chart
 
-The SVG D3.js based charting solution used for https://jamstack.org/survey/2021/
+The SVG D3.js based charting solution used for the Jamstack Community Survey.
+
+## [Demo](https://zachleat.github.io/artificial-chart/demo.html)
+
+All of the charts are viewable on https://jamstack.org/survey/2021/
 
 ## Features
 
