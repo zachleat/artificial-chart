@@ -1,8 +1,13 @@
-new ArtificialChartVerticalBar("demographics-jobs-chart", "demographics-jobs-table", {
+// Import d3
+import "https://d3js.org/d3.v7.min.js";
+
+import { HorizontalBar, VerticalBar } from "./artificial-chart.js";
+
+new VerticalBar("demographics-jobs-chart", "demographics-jobs-table", {
   showInlineBarValues: "outside",
 });
 
-new ArtificialChartHorizontalBar("demographics-jobtitle-chart", "demographics-jobtitle-table", {
+new HorizontalBar("demographics-jobtitle-chart", "demographics-jobtitle-table", {
   showInlineBarValues: "outside",
   showLegend: false,
   margin: {
@@ -11,13 +16,13 @@ new ArtificialChartHorizontalBar("demographics-jobtitle-chart", "demographics-jo
   colorMod: 2
 });
 
-new ArtificialChartVerticalBar("experience-wentremote-chart", "experience-wentremote-table", {
+new VerticalBar("experience-wentremote-chart", "experience-wentremote-table", {
   showInlineBarValues: "outside",
   colorMod: 2,
   showLegend: false,
 });
 
-new ArtificialChartHorizontalBar("demographics-employmentstatus-chart", "demographics-employmentstatus-table", {
+new HorizontalBar("demographics-employmentstatus-chart", "demographics-employmentstatus-table", {
   showInlineBarValues: "outside",
   margin: {
     left: 100

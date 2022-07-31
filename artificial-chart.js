@@ -389,7 +389,7 @@ class ArtificialChart {
   }
 }
 
-class ArtificialChartVerticalBar extends ArtificialChart {
+class VerticalBar extends ArtificialChart {
   constructor(target, tableId, optionOverrides = {}) {
     let chart = super(target, optionOverrides, "artfc-vbar");
 
@@ -541,7 +541,7 @@ class ArtificialChartVerticalBar extends ArtificialChart {
   }
 }
 
-class ArtificialChartHorizontalBar extends ArtificialChart {
+class HorizontalBar extends ArtificialChart {
   constructor(target, tableId, optionOverrides = {}) {
     optionOverrides.margin = Object.assign({
       top: 20,
@@ -708,7 +708,7 @@ class ArtificialChartHorizontalBar extends ArtificialChart {
   }
 }
 
-class ArtificialChartBubble extends ArtificialChart {
+class Bubble extends ArtificialChart {
   constructor(target, tableId, optionOverrides = {}) {
     optionOverrides.margin = {
       top: 20,
@@ -943,3 +943,10 @@ class ArtificialChartBubble extends ArtificialChart {
     chart.reset(svg);
   }
 }
+
+export {
+  ArtificialChart,
+  Bubble,
+  HorizontalBar,
+  VerticalBar
+};

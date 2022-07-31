@@ -21,3 +21,19 @@ All of the charts are viewable on https://jamstack.org/survey/2021/
 * Supports customized label precision
 * Supports auto-generated HTML legends (outside of the SVG).
 * Uses IntersectionObserver and ResizeObserver (when available) for better performance on initialization and resize.
+
+## Changelog
+
+* `v2.0.0` swap to ESM
+
+## Usage
+
+```js
+import "https://d3js.org/d3.v7.min.js";
+
+import { HorizontalBar, VerticalBar, Bubble } from "./artificial-chart.js";
+
+new VerticalBar("chart-id", "source-table-id", {
+  showInlineBarValues: "outside",
+});
+```

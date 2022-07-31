@@ -1,0 +1,20 @@
+{
+  "name": "artificial-chart",
+  "version": "1.0.0",
+  "description": "The SVG D3.js based charting solution used for the Jamstack Community Survey.",
+  "type": "module",
+  "main": "artificial-chart.js",
+  "style": "artificial-chart.css",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zachleat/artificial-chart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zachleat/artificial-chart/issues"
+  },
+  "homepage": "https://github.com/zachleat/artificial-chart#readme"
+}
