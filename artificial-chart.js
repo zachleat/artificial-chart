@@ -459,7 +459,8 @@ class VerticalBar extends ArtificialChart {
       .call(d3
         .axisLeft(y)
         .ticks(null, options.valueType[0] === "percentage" ? "%" : "")
-        .tickSize(-width + margin.left + margin.right))
+        .tickSize(-width + margin.left + margin.right)
+        .tickFormat(d => options.valueType[0] === "percentage" ? `${(d*100).toFixed(0)}%` : d))
       .call(g => g.select(".domain").remove());
 
     let xAxis = g => g
@@ -613,7 +614,8 @@ class HorizontalBar extends ArtificialChart {
       .call(d3
         .axisBottom(x)
         .ticks(5, options.valueType[0] === "percentage" ? "%" : "")
-        .tickSize(height - margin.bottom - margin.top))
+        .tickSize(height - margin.bottom - margin.top)
+        .tickFormat(d => options.valueType[0] === "percentage" ? `${(d*100).toFixed(0)}%` : d))
       .call(g => g.select(".domain").remove());
 
     let yAxis = g => g
