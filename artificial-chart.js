@@ -218,7 +218,7 @@ class ArtificialChart {
     });
   }
 
-  parseDataToCsv(tableId, reverse) {
+  static parseDataToCsv(tableId, reverse) {
     let table = document.getElementById(tableId);
     let headerCells = table.querySelectorAll(":scope thead th");
     let bodyRows = table.querySelectorAll(":scope tbody tr");
@@ -393,7 +393,7 @@ class VerticalBar extends ArtificialChart {
   constructor(target, tableId, optionOverrides = {}) {
     let chart = super(target, optionOverrides, "artfc-vbar");
 
-    let csvData = chart.parseDataToCsv(tableId);
+    let csvData = ArtificialChart.parseDataToCsv(tableId);
     let dataSplit = csvData.split("\n");
     this.axisLabels = [dataSplit[0].split(",")[0]];
 
@@ -542,6 +542,125 @@ class VerticalBar extends ArtificialChart {
   }
 }
 
+class Line extends ArtificialChart {
+  constructor(target, tableId, optionOverrides = {}) {
+    let chart = super(target, optionOverrides, "artfc-line");
+
+    let csvData = ArtificialChart.parseDataToCsv(tableId);
+    let dataSplit = csvData.split("\n");
+    this.axisLabels = [dataSplit[0].split(",")[0]];
+
+    let data = Object.assign(d3.csvParse(csvData, d3.autoType));
+
+    this.onDeferInit(function() {
+      this.render(chart, data);
+
+      this.onResize(function() {
+        this.render(chart, data);
+      })
+    });
+  }
+
+  render(chart, data) {
+    let {
+      options,
+      margin,
+      width,
+      height,
+      dimensions,
+      svg,
+      colors,
+      labelColors,
+    } = chart;
+
+    let keys = this.getKeys(data);
+    let groupKey = data.columns[0];
+
+    // d3.scaleLog
+    let y = d3.scaleLinear()
+      .domain([
+        0,
+        Math.min(d3.max(data, d => {
+          return d3.max(keys, key => d[key])
+        }), options.max && options.max.y || Infinity)
+      ]).nice()
+      .rangeRound([height - margin.bottom, margin.top]);
+
+    let x = d3.scaleLinear()
+      .domain([
+        Math.min(...keys),
+        Math.max(...keys) * 1.15
+      ])
+      .rangeRound([margin.left, width - margin.right]);
+
+    let yAxis = g => g
+      .attr("transform", `translate(${margin.left},0)`)
+      .attr("class", "artfc-yaxis")
+      .call(d3
+        .axisLeft(y)
+        .ticks(null, options.valueType[0] === "percentage" ? "%" : "")
+        .tickSize(-width + margin.left + margin.right)
+        .tickFormat(d => options.valueType[0] === "percentage" ? `${(d*100).toFixed(0)}%` : d))
+      .call(g => g.select(".domain").remove());
+
+    let xAxis = g => g
+      .attr("transform", `translate(0,${height - margin.bottom})`)
+      .attr("class", "artfc-xaxis")
+      .call(d3
+        .axisBottom(x)
+        .ticks(keys.length)
+        .tickSize(-width + margin.left + margin.right)
+        .tickFormat(d => d))
+      .call(g => g.select(".domain").remove());
+
+    svg.append("g").call(xAxis);
+    svg.append("g").call(yAxis);
+
+    let dataMod = data.map((entry, index) => {
+      return keys.map(key => {
+        return {
+          index,
+          group: entry[groupKey],
+          key: key,
+          value: entry[key]
+        };
+      })
+    })
+
+    for(let datum of dataMod) {
+      let dims = {};
+      svg.append("path")
+          .datum(datum)
+          .attr("fill", "none")
+          .attr("stroke", d => {
+            return colors(d)
+          })
+          .attr("stroke-width", 3)
+          .attr("d", d3.line()
+            .x(function(d) {
+              let c = x(d.key);
+              dims.x = c;
+              return c;
+            })
+            .y(function(d) {
+              let c = y(d.value);
+              dims.y = c;
+              return c;
+            }).curve(d3.curveBasis)
+          );
+
+      svg.append("text")
+        .attr("x", dims.x + 4)
+        .attr("y", Math.max(dims.y + 4, 14)) // if the data goes off the top, keep the label visible
+        .attr("font-size", "14")
+        .attr("font-family", "sans-serif")
+        .text(datum[0].group)
+    }
+
+    chart.reset(svg);
+  }
+}
+
 class HorizontalBar extends ArtificialChart {
   constructor(target, tableId, optionOverrides = {}) {
     optionOverrides.margin = Object.assign({
@@ -551,7 +670,7 @@ class HorizontalBar extends ArtificialChart {
       left: 120
     }, optionOverrides.margin);
     let chart = super(target, optionOverrides, "artfc-hbar");
-    let csvData = chart.parseDataToCsv(tableId, true);
+    let csvData = ArtificialChart.parseDataToCsv(tableId, true);
     let data = Object.assign(d3.csvParse(csvData, d3.autoType));
 
     this.onDeferInit(function() {
@@ -728,7 +847,7 @@ class Bubble extends ArtificialChart {
     }
 
     let chart = super(target, optionOverrides, "artfc-bubble");
-    let csvData = chart.parseDataToCsv(tableId);
+    let csvData = ArtificialChart.parseDataToCsv(tableId);
     let dataSplit = csvData.split("\n");
     this.axisLabels = dataSplit[0].split(",").slice(1);
 
@@ -950,5 +1069,6 @@ export {
   ArtificialChart,
   Bubble,
   HorizontalBar,
-  VerticalBar
+  VerticalBar,
+  Line
 };
