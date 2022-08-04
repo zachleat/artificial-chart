@@ -1,6 +1,6 @@
 {
   "name": "artificial-chart",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "The SVG D3.js based charting solution used for the Jamstack Community Survey.",
   "type": "module",
   "main": "artificial-chart.js",
